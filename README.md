@@ -1,34 +1,85 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# React Tailwindcss MobX Boilerplate build with Vite
+
+This is a [NextJs](https://nextjs.org/) boilerplate project to be used with [Tailwindcss](https://tailwindcss.com), [Redux](https://redux.js.org/).
+
+## What is inside?
+
+This project uses many tools like:
+
+- [NextJs](https://nextjs.org/)
+- [TypeScript](https://www.typescriptlang.org)
+- [Tailwindcss](https://tailwindcss.com)
+- [Redux](https://redux.js.org/)
+- [Eslint](https://eslint.org)
+- [Prettier](https://prettier.io)
 
 ## Getting Started
 
-First, run the development server:
+### Install
+
+Create the project.
 
 ```bash
-npm run dev
-# or
-yarn dev
+npx degit https://gitlab.com/madhav.bhasin/nextjs-tailwind-redux-boilerplate my-app
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Access the project directory.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```bash
+cd my-app
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+Install dependencies.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```bash
+yarn
+```
 
-## Learn More
+Serve with hot reload at <http://localhost:3000>.
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+yarn run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Lint
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```bash
+yarn run lint
+```
 
-## Deploy on Vercel
+### Details
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- How to use .env variables ?
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+  - Add env variables to .env file (use .env.[development/production] as per your current environment)
+
+  - Use `NEXT_` prefix to your env variables to let vite compiler know that these variables can be publicly accessed.
+
+  - _This is as per personal choice._ Use a separate env constant file to export the env variables.
+
+```js
+const envConfig = {
+    BACKEND_URL: process.env.NEXT_REACT_APP_BACKEND_URL!,
+};
+
+export default envConfig;
+```
+
+- **What if I have my own font files ?**
+
+  - Add font files in public folder. I have created another folder `font-files` in public and copied all the font files into that
+  - Use those files in your global css file to override the defaults. See below
+
+```css
+@font-face {
+    font-family: 'GT Walsheim Pro Regular';
+    font-style: regular;
+    src: url('/font-files/GT-WALSHEIM-PRO-REGULAR.TTF') format('truetype'), url('/font-files/GTWalsheimProRegular.woff2')
+            format('woff2');
+    font-display: swap;
+}
+
+html {
+    font-family: 'GT Walsheim Pro Regular';
+}
+```
